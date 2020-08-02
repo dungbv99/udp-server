@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: udp-server-deployment
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: udp-server
+    spec:
+      containers:
+        - name: udp-sever
+          image: udp-server:v1
+          imagePullPolicy: IfNotPresent
+          ports:
+          - containerPort: 1234
+  selector:
+    matchLabels:
+      app: udp-server
